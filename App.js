@@ -1,23 +1,61 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+'use strict';
 
-export default class App extends React.Component {
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  Button,
+  Alert,
+  Dimensions,
+  AsyncStorage,
+  TouchableHighlight,
+  I18nManager,
+} from 'react-native';
+import Navigator from 'Components/Navigation.Components/Navigator';
+import Login from 'Components/Login.Components/Login_Screen';
+
+const FloatFromRight = {
+  ...Navigator.SceneConfigs.FloatFromRight,
+  gestures: {
+    pop: {
+      ...Navigator.SceneConfigs.FloatFromRight.gestures.pop,
+      edgeHitWidth: 0,
+    },
+  },
+};
+
+export default class App extends Component {
+  constructor(props){
+    super(props);
+  }
+  waitLocation(){
+        return <Navigator
+          configureScene={(route, routeStack) => FloatFromRight}
+          initialRoute={{id: firstScene}}
+          renderScene={this.navigate}/>
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+   return this.waitLocation();
+  }
+
+  navigate(route, navigator){
+    var Component = route.component
+    switch(route.id){
+      case 'Login_Screen':return (<LoginScene navigator={navigator} />);
+      case 'Card_Screen': return (<View><Text>Card Screen</Text></View>);
+      case 'Favorites_Screen': return (<View><Text>Favorites Screen</Text></View>);
+      }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
