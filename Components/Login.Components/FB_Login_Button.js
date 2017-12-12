@@ -18,7 +18,7 @@ var width = window.width;
 export default class FB_Button extends Component {
   constructor(props) {
       super(props);
-      this.textObject = language.getTextObject(language.getLanguage()).Facebook
+      //this.textObject = language.getTextObject(language.getLanguage()).Facebook
     }
     render(){
         return (

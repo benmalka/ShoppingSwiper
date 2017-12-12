@@ -19,6 +19,8 @@
   "dependencies": {
     "react": "16.0.0",
     "react-native": "0.50.3",
-    "react-native-facebook-login": "^1.6.0"
+    "react-native-deprecated-custom-components": "^0.1.1",
+    "react-native-facebook-login": "^1.6.0",
+    "react-native-swipe-cards": "^0.1.1"
   }
 }

@@ -22,7 +22,7 @@ import FB_Button from './FB_Login_Button';
 I18nManager.forceRTL(true)
 
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
-const FacebookAPI = server_data.Facebook
+//const FacebookAPI = server_data.Facebook
 
 
 const ios = Platform.OS === 'ios';
@@ -68,7 +68,7 @@ export default class Login extends Component {
         <StatusBar backgroundColor="#8e8e8e" barStyle={ios ? 'dark-content' : 'light-content'}/>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginBottom: height/11}}>
                 <FBLogin
-                    buttonView={this.state.stillLooking ? <ActivityIndicator size={75}/> : <FBLoginView />}
+                    buttonView={this.state.stillLooking ? <ActivityIndicator size={75}/> : <FB_Button />}
                     ref={(fbLogin) => { this.fbLogin = fbLogin }}
                     loginBehavior={FBLoginManager.LoginBehaviors.Native}
                     permissions={["email","user_friends"]}

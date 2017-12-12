@@ -19,8 +19,11 @@ import {
   TouchableHighlight,
   I18nManager,
 } from 'react-native';
-import Navigator from 'Components/Navigation.Components/Navigator';
-import Login from 'Components/Login.Components/Login_Screen';
+import Navigator from './Components/Navigation.Components/Navigator';
+import Login from './Components/Login.Components/Login_Screen';
+import CardScreen from './Components/CardScreen.Components/CardScreen.js';
+
+const firstScene = 'Card_Screen'
 
 const FloatFromRight = {
   ...Navigator.SceneConfigs.FloatFromRight,
@@ -50,8 +53,8 @@ export default class App extends Component {
   navigate(route, navigator){
     var Component = route.component
     switch(route.id){
-      case 'Login_Screen':return (<LoginScene navigator={navigator} />);
-      case 'Card_Screen': return (<View><Text>Card Screen</Text></View>);
+      case 'Login_Screen':return (<Login navigator={navigator} />);
+      case 'Card_Screen': return (<CardScreen navigator={navigator} user={route.user}/>);
       case 'Favorites_Screen': return (<View><Text>Favorites Screen</Text></View>);
       }
   }
