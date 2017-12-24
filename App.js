@@ -23,7 +23,7 @@ import Navigator from './Components/Navigation.Components/Navigator';
 import Login from './Components/Login.Components/Login_Screen';
 import CardScreen from './Components/CardScreen.Components/CardScreen.js';
 
-const firstScene = 'Card_Screen'
+const firstScene = 'Login_Screen'
 
 const FloatFromRight = {
   ...Navigator.SceneConfigs.FloatFromRight,

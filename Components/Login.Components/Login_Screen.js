@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import FB_Button from './FB_Login_Button';
+import {post_request, facebook_post_request} from '../../Controllers/RestRequestController';
 
 I18nManager.forceRTL(true)
 
@@ -54,11 +55,43 @@ export default class Login extends Component {
       user: user,
     })
   }
+  _updateServer(obj_body){
+    let body = {
+      userID: obj_body.id,
+      userName: obj_body.name,
+      userFirstName: obj_body.first_name,
+      userLastName: obj_body.last_name,
+      userEmail: obj_body.email,
+      userGender: obj_body.gender,
+    }
+    post_request('addUser', body)
+    .then((response) => response.json())
+    .then((json) => {
+      if (json.output === 'success'){
+        this.goToCardScreen(body)
+      }
+      else{
+        this.errorHandler({message: json.output})
+      }
+    })
+    .catch((error) => {
+      this.errorHandler(error)
+    })
+  }
   onUserFound(e){
-    console.log(e)
+    console.log(e);
+    facebook_post_request(e.credentials.userId, e.credentials.token, ['last_name','first_name', 'gender', 'email'])
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json)
+      this._updateServer(json)
+    })
+    .catch((error) => {
+      this.errorHandler(error)
+    })
   }
   errorHandler(error){
-    console.log(error.message);
+    console.log(error);
     Alert.alert('ERROR', error.message);
     this.setState({stillLooking:false});
   }
@@ -72,7 +105,7 @@ export default class Login extends Component {
                     ref={(fbLogin) => { this.fbLogin = fbLogin }}
                     loginBehavior={FBLoginManager.LoginBehaviors.Native}
                     permissions={["email","user_friends"]}
-                    onLogin={(e) => this.onUserFound(e)}
+                    onLogin={(e) => this._updateServer(e.profile)}
                     onLoginFound={(e) => this.onUserFound(e)}
                     onLoginNotFound={(e) => this.setState({stillLooking: false})}
                     onLogout={function(e){console.log(e)}}
