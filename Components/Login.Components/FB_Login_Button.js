@@ -6,19 +6,11 @@ import {Dimensions,
         Text,
         View } from 'react-native';
 
-var window = Dimensions.get('window')
-var height = window.height;
-var width = window.width;
-/**
-  Example FBLoginView class
-  Please note:
-  - this is not meant to be a full example but highlights what you have access to
-  - If you use a touchable component, you will need to set the onPress event like below
-**/
+var {height, width} = Dimensions.get('window')
+
 export default class FB_Button extends Component {
   constructor(props) {
       super(props);
-      //this.textObject = language.getTextObject(language.getLanguage()).Facebook
     }
     render(){
         return (

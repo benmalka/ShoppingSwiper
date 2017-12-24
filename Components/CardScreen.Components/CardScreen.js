@@ -21,9 +21,7 @@ import SwipeCards from './SwipeCards';
 import {post_resuest} from '../../Controllers/RestRequestController';
 
 I18nManager.forceRTL(true)
-
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
-//const FacebookAPI = server_data.Facebook
 
 const card = [
     {id: "1", productName: "Matan", image: "https://airbitz.co/go/wp-content/uploads/2017/01/buy-websites.jpg", price: "101", currency: "$", website: "Ebay", link: "https://www.ebay.com/itm/lomography-lomoinstant-marrakesh-edition-3-lenses-instant-film-camera-flash/351652040056?hash=item51e0184d78"},
@@ -65,7 +63,7 @@ export default class CardScreen extends Component {
      this._handleSwipeLeft = this._handleSwipeLeft.bind(this);
      this._handleSwipeRight = this._handleSwipeRight.bind(this);
      this._renderCard = this._renderCard.bind(this)
-     this._renderNoMoreCard = this._renderNoMoreCard.bind(this)
+     this._renderNoMoreCards = this._renderNoMoreCards.bind(this)
 
  }
  componentDidMount(){
@@ -125,7 +123,7 @@ export default class CardScreen extends Component {
  _renderCard(data){
     return(<Card {...data}/>)
  }
- _renderNoMoreCard(){
+ _renderNoMoreCards(){
     return (<View><Text>No More Cards </Text></View>)
  }
  _cardRemoved(index){
@@ -158,7 +156,7 @@ export default class CardScreen extends Component {
                 stack={true}
                 stackDepth={3}
                 renderCard={(cardData) => this._renderCard(cardData)}
-                renderNoMoreCards={this._renderNoMoreCard}
+                renderNoMoreCards={this._renderNoMoreCards}
                 showYup={false}
                 showNope={false}
                 handleYup={this._handleSwipeRight}

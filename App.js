@@ -24,7 +24,6 @@ import Login from './Components/Login.Components/Login_Screen';
 import CardScreen from './Components/CardScreen.Components/CardScreen.js';
 
 const firstScene = 'Login_Screen'
-
 const FloatFromRight = {
   ...Navigator.SceneConfigs.FloatFromRight,
   gestures: {
@@ -39,25 +38,23 @@ export default class App extends Component {
   constructor(props){
     super(props);
   }
-  waitLocation(){
+  _renderNavigator(){
         return <Navigator
           configureScene={(route, routeStack) => FloatFromRight}
           initialRoute={{id: firstScene}}
-          renderScene={this.navigate}/>
+          renderScene={this._navigate}/>
   }
-
-  render() {
-   return this.waitLocation();
-  }
-
-  navigate(route, navigator){
-    var Component = route.component
+  _navigate(route, navigator){
+    let Component = route.component
     switch(route.id){
       case 'Login_Screen':return (<Login navigator={navigator} />);
       case 'Card_Screen': return (<CardScreen navigator={navigator} user={route.user}/>);
       case 'Favorites_Screen': return (<View><Text>Favorites Screen</Text></View>);
       }
   }
+  render() {
+    return this._renderNavigator();
+   }
 }
 
 
