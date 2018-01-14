@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShoppingSwiper</string>
+    <string name="app_name">SwipeAndBuy</string>
 	<string name="facebook_app_id">279821905873783</string>
 	<string name="fb_login_protocol_scheme">fb279821905873783</string>
 </resources>

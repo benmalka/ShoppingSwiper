@@ -98,10 +98,10 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#8e8e8e" barStyle={ios ? 'dark-content' : 'light-content'}/>
+        <StatusBar backgroundColor="#417f86" barStyle={ios ? 'dark-content' : 'light-content'}/>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginBottom: height/11}}>
                 <FBLogin
-                    buttonView={this.state.stillLooking ? <ActivityIndicator size={75}/> : <FB_Button />}
+                    buttonView={this.state.stillLooking ? <ActivityIndicator size={75} color="#417f86"/> : <FB_Button />}
                     ref={(fbLogin) => { this.fbLogin = fbLogin }}
                     loginBehavior={FBLoginManager.LoginBehaviors.Native}
                     permissions={["email","user_friends"]}
